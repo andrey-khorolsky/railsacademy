@@ -1,0 +1,19 @@
+
+<a href='/user'>Back</a>
+
+<%= form_for :user do |f|%>
+
+    <div>Name</div>
+    <%= f.text_field :name%>
+
+    <div>email</div>
+    <%= f.text_field :email%>
+
+    <div>password</div>
+    <%= f.text_field :password%>
+
+    <br>
+    
+    <%= f.submit%>
+
+<%end%>

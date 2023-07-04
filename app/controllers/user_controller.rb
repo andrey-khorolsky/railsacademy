@@ -1,16 +1,16 @@
 class UserController < ApplicationController
+  def index
+    @user = User.all
+  end
 
-    def create
-        user = User.new(params['name'], params['email'], params['password'])
-        user.save
-    end
+  def create
+    @user = User.new(params.required(:user).permit(:name, :email, :password))
+    @user.save
 
-    def show
+    redirect_to '/user'
+  end
 
-        user = User.find_by(rowid: params['id'])
-        # user = User.new(asd, qwe, qwe)
-        render plain: user.to_s
-
-    end
-
+  def show
+    @user = User.find(params['id'])
+  end
 end

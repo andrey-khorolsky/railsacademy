@@ -1,7 +1,7 @@
 
 <a href='/user'>Back</a>
 
-<%= form_for :user do |f|%>
+<%= form_for :user, method: :post, url: '/user' do |f|%>
 
     <div>Name</div>
     <%= f.text_field :name%>

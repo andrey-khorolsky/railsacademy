@@ -1,3 +1,10 @@
 <div>Users</div>
 
 <a href='/user/new'>New User</a>
+
+<%@user.each do |usr|%>
+    <div>
+        <div>Name: <%=usr.name%></div>
+        <div>Email: <%=usr.email%></div>
+    </div>
+<%end%>

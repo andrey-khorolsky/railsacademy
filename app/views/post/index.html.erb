@@ -1,3 +1,4 @@
+<br>
 <div>Posts</div>
 
 <a href='/post/new'>write new post</a>
@@ -5,9 +6,9 @@
 <%@post.each do |post|%>
 
     <div>
-        <div>From: <%=post.user_id%></div>
         <br>
-        <%# <div><%=post.img%></div> %>
+        <div>From: <%=User.find(post.user_id).name%></div>
+        <img src=<%=post.img%>>
         <div><%=post.text%></div>
     </div>
 

@@ -46,7 +46,7 @@ gem 'bootsnap', require: false
 gem 'rubocop-rails', require: false
 
 # Devise (for auth)
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -80,4 +80,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-

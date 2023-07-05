@@ -1,3 +1,14 @@
 <div>Posts</div>
 
-<a href='/post/new'>write new post</div>
+<a href='/post/new'>write new post</a>
+
+<%@post.each do |post|%>
+
+    <div>
+        <div>From: <%=post.user_id%></div>
+        <br>
+        <%# <div><%=post.img%></div> %>
+        <div><%=post.text%></div>
+    </div>
+
+<%end%>

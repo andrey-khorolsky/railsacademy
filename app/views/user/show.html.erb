@@ -5,3 +5,11 @@
 
 <div>Name: <%= @user.name%></div>
 <div>Email: <%= @user.email%></div>
+
+<%if (current_user.id != @user.id)%>
+    <%if @follower%>
+        <a href='/user/<%=@user.id%>/unfollow'>Unfollow</a>
+    <%else%>
+        <a href='/user/<%=@user.id%>/follow'>Follow</a>
+    <%end%>
+<%end%>

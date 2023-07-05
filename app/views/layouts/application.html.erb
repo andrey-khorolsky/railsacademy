@@ -29,7 +29,7 @@
         <a onclick="this.parentNode.submit();">Log out</a>
       </form> %>
 
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
 
     <%= yield %>
   </body>

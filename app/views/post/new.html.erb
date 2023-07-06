@@ -1,0 +1,14 @@
+<div>New post</div>
+
+<%= form_for :post, method: :post, url: '/post' do |f|%>
+
+    <%= f.label :text%><br>
+    <%= f.text_field :text, autofocus: true%>
+    <br>
+
+    <%= f.label :img%>
+    <%= f.file_field :img%>
+    <br>
+
+    <%= f.submit %>
+<%end%>

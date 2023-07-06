@@ -8,6 +8,14 @@
         <a href='/user/<%=post.user_id%>'>From: <%=User.find(post.user_id).name%></a>
         <img src=<%=post.img%>>
         <div><%=post.text%></div>
+        <div>Likes: <%=Like.findLikes post.id%></div>
+        
+        <%if post.hasLikeFrom current_user.id%>
+            <a href='/post/<%=post.id%>/like'>Like</a>
+        <%else%>
+            <a href='/post/<%=post.id%>/dislike'>Dislike</a>
+        <%end%>
+        
     </div>
 
 <%end%>

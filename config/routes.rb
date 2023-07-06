@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   resources :user
 
   resources :post
+  
+  get '/user/:id/follow', to: 'user#follow'
+  get '/user/:id/unfollow', to: 'user#unfollow'
+
 end

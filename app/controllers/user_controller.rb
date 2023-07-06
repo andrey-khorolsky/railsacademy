@@ -14,5 +14,17 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(params['id'])
+    @follower = Follower.where(['author_id = ? and follower_id = ?', @user.id, current_user.id]).count == 1
+  end
+
+  def follow
+    Follower.new(author_id: params['id'], follower_id: current_user.id).save
+
+    redirect_to '/user/' + params['id']
+  end
+
+  def unfollow
+    Follower.delete_by(author_id: params['id'], follower_id: current_user.id)
+    redirect_to '/user/' + params['id']
   end
 end

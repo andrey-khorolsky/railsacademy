@@ -22,13 +22,6 @@
       <p class="alert"><%= alert %></p>
       <a href='/users/sign_in'>Log in</a>
 
-      <%# <a href='/users/sign_out' data-method="delete">Log out</a> %> %>
-      
-      <%# <form action='/users/sign_out'>
-        <input type="hidden" name="_method" value="delete"/> 
-        <a onclick="this.parentNode.submit();">Log out</a>
-      </form> %>
-
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
 
     <%= yield %>

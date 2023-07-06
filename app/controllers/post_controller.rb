@@ -6,11 +6,7 @@ class PostController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:text))
-    @post.user_id = current_user.id
-    @post.img = params[:post][:img]
-    @post.save
-
+    Post.new(text: params[:post][:text], img: params[:post][:img], user_id: current_user.id).save
     redirect_to '/post'
   end
 
@@ -27,5 +23,4 @@ class PostController < ApplicationController
     Like.dislike params['id'], current_user.id
     redirect_back fallback_location: root_path
   end
-
 end

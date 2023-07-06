@@ -5,27 +5,19 @@ class UserController < ApplicationController
     @user = User.all
   end
 
-  def create
-    @user = User.new(params.required(:user).permit(:name, :email, :password))
-    @user.save
-
-    redirect_to '/user'
-  end
-
   def show
     @user = User.find(params['id'])
-    @follower = Follower.where(['author_id = ? and follower_id = ?', @user.id, current_user.id]).count == 1
+    @follower = Follower.areUserFollowTo current_user.id, @user.id
     @posts = Post.findPostsBy @user.id
   end
 
   def follow
-    Follower.new(author_id: params['id'], follower_id: current_user.id).save
-
+    Follower.follow current_user.id, params['id']
     redirect_to '/user/' + params['id']
   end
 
   def unfollow
-    Follower.delete_by(author_id: params['id'], follower_id: current_user.id)
+    Follower.unfollow current_user.id, params['id']
     redirect_to '/user/' + params['id']
   end
 end

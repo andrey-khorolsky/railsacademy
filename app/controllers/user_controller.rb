@@ -15,6 +15,7 @@ class UserController < ApplicationController
   def show
     @user = User.find(params['id'])
     @follower = Follower.where(['author_id = ? and follower_id = ?', @user.id, current_user.id]).count == 1
+    @posts = Post.findPostsBy @user.id
   end
 
   def follow

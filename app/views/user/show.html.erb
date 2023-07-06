@@ -13,3 +13,22 @@
         <a href='/user/<%=@user.id%>/follow'>Follow</a>
     <%end%>
 <%end%>
+
+<%@posts.each do |post|%>
+
+    <div>
+        <br>
+        <div>From: <%=User.find(post.user_id).name%></div>
+        <img src=<%=post.img%>>
+        <div><%=post.text%></div>
+        <div>Likes: <%=Like.findLikes post.id%></div>
+        
+        <%if post.hasLikeFrom current_user.id%>
+            <a href='/post/<%=post.id%>/like'>Like</a>
+        <%else%>
+            <a href='/post/<%=post.id%>/dislike'>Dislike</a>
+        <%end%>
+        
+    </div>
+
+<%end%>

@@ -10,6 +10,7 @@
         <div>From: <%=User.find(post.user_id).name%></div>
         <img src=<%=post.img%>>
         <div><%=post.text%></div>
+        <div>Likes: <%=Like.findLikes post.id%></div>
     </div>
 
 <%end%>

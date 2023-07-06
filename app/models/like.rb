@@ -5,7 +5,6 @@ class Like < ApplicationRecord
     end
 
     def self.like post_id, user_id
-        # binding.pry
         @like = Like.new(post_id: post_id, user_id: user_id)
         @like.save
     end

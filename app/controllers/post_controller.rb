@@ -2,7 +2,7 @@ class PostController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @post = Post.where user_id: current_user.id
+    @post = Post.findPostsBy current_user.id
   end
 
   def create

@@ -3,8 +3,11 @@ class Post < ApplicationRecord
   mount_uploader :img, PostimgUploader
 
   def hasLikeFrom user_id
-    # binding.pry
     return Like.where('post_id = ? and user_id = ?', id, user_id).count == 0
+  end
+
+  def self.findPostsBy user_id
+    return self.where('user_id = ?', user_id)
   end
 
 end

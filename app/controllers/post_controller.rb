@@ -19,15 +19,13 @@ class PostController < ApplicationController
   end
 
   def like
-    # Post.find(params['id']).like
     Like.like params['id'], current_user.id
-    redirect_to '/'
-    # return
+    redirect_back fallback_location: root_path
   end
 
   def dislike
     Like.dislike params['id'], current_user.id
-    redirect_to '/'
+    redirect_back fallback_location: root_path
   end
 
 end

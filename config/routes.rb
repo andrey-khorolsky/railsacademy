@@ -4,13 +4,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root to: 'user#index'
+  root to: 'news#index'
 
   resources :user
 
   resources :post
-  
+
   get '/user/:id/follow', to: 'user#follow'
   get '/user/:id/unfollow', to: 'user#unfollow'
-
 end

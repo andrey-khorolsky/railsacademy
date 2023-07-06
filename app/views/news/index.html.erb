@@ -1,0 +1,13 @@
+<br>
+<div>News</div>
+
+<%@posts.each do |post|%>
+
+    <div>
+        <br>
+        <a href='/user/<%=post.user_id%>'>From: <%=User.find(post.user_id).name%></a>
+        <img src=<%=post.img%>>
+        <div><%=post.text%></div>
+    </div>
+
+<%end%>

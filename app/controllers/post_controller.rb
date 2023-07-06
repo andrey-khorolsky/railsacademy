@@ -1,6 +1,6 @@
 class PostController < ApplicationController
   def index
-    @post = Post.all
+    @post = Post.where user_id: current_user.id
   end
 
   def create

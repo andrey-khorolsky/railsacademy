@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   end
 
   def hasLikeFrom(user_id)
-    Like.where('post_id = ? and user_id = ?', id, user_id).count == 0
+    Like.arePostLikedBy id, user_id
   end
 
   def self.findPostsBy(user_id)

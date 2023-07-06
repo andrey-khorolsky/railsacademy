@@ -1,3 +1,5 @@
+
+<div>My account</div>
 <br>
 
 <div>
@@ -22,6 +24,15 @@
         <img src=<%=post.img%>>
         <div><%=post.text%></div>
         <div>Likes: <%=Like.findLikes post.id%></div>
+
+        <div>
+            <%Comment.getLastComments(post.id).each do |comm|%>
+                <div>
+                    <span><%=User.find(comm.user_id).name%>:</span>
+                    <span><%=comm.text%></span>
+                </div>
+            <%end%>
+        </div>
     </div>
 
 <%end%>

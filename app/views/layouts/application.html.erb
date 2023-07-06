@@ -12,17 +12,19 @@
 
   <body>
   
-    <div>
+    <div class='menu'>
       <a href='/'>Main</a>
       <a href='/user'>Users</a>
       <a href='/account'>Account</a>
-    </div>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <a href='/users/sign_in'>Log in</a>
 
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    </div>
+    
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
       <br>
 
     <%= yield %>

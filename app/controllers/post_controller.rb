@@ -23,4 +23,9 @@ class PostController < ApplicationController
     Like.dislike params['id'], current_user.id
     redirect_back fallback_location: root_path
   end
+
+  def addComment
+    Comment.new(text: params[:comment][:text], post_id: params['id'], user_id: current_user.id).save
+    redirect_back fallback_location: root_path
+  end
 end

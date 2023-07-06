@@ -1,4 +1,4 @@
-<br>
+
 <div>News</div>
 
 <%@posts.each do |post|%>
@@ -9,12 +9,32 @@
         <img src=<%=post.img%>>
         <div><%=post.text%></div>
         <div>Likes: <%=Like.findLikes post.id%></div>
+
+        <div>
+            <%Comment.getLastComments(post.id).each do |comm|%>
+                <div>
+                    <span><%=User.find(comm.user_id).name%>:</span>
+                    <span><%=comm.text%></span>
+                </div>
+            <%end%>
+        </div>
         
         <%if user_signed_in?%>
             <%if post.hasLikeFrom current_user.id%>
                 <a href='/post/<%=post.id%>/like'>Like</a>
             <%else%>
                 <a href='/post/<%=post.id%>/dislike'>Dislike</a>
+            <%end%>
+        <%end%>
+
+        <%if user_signed_in?%>
+            <%=form_for :comment, url: "/post/#{post.id}/comment", method: :post do |f|%>
+                
+                <%= f.label :text, "Comment"%>
+                <%= f.text_field :text%>
+
+                <%= f.submit%>
+
             <%end%>
         <%end%>
         

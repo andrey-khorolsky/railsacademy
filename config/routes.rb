@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :post
 
+  get '/account', to: 'post#index'
+
   # Follow and unfollow to user
   get '/user/:id/follow', to: 'user#follow'
   get '/user/:id/unfollow', to: 'user#unfollow'
@@ -16,4 +18,7 @@ Rails.application.routes.draw do
   # Like post and dislike
   get '/post/:id/like', to: 'post#like'
   get '/post/:id/dislike', to: 'post#dislike'
+
+  # Write new post
+  post '/post/:id/comment', to: 'post#addComment'
 end

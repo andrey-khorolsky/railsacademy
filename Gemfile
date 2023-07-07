@@ -64,6 +64,8 @@ group :development, :test do
   gem 'pry'
 
   gem 'pry-rails'
+
+  gem 'rspec-rails', '~> 6.0.0'
 end
 
 group :development do

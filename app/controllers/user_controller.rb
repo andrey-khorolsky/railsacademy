@@ -6,6 +6,10 @@ class UserController < ApplicationController
   end
 
   def show
+    if (current_user.id == params[:id].to_i)
+      redirect_to '/account'
+    end
+
     @user = User.find(params['id'])
     @follower = Follower.areUserFollowTo current_user.id, @user.id
     @posts = Post.findPostsBy @user.id

@@ -6,19 +6,21 @@ RSpec.describe NewsController, type: :controller do
     describe "GET index" do
 
         context "unsigned user" do
+            before { get :index }
                 
-            it "open news page" do
-                get :index
-                assert_response :success
-            end
+            # it "open news page" do
+            #     get :index
+            #     assert_response :success
+            # end
+            it { should respond_with 200}
 
-            it "render index" do
-                get :index
-                render_template 'post/index'
-            end
+            # it "render index" do
+            #     get :index
+            #     render_template 'post/index'
+            # end
+            it { should render_template('index') }
 
             it "show all posts" do
-                get :index
                 assert_equal Post.all.order(created_at: :desc), assigns(:posts)
             end
 
@@ -28,7 +30,7 @@ RSpec.describe NewsController, type: :controller do
         context "signed in user" do
 
             it "open news page" do
-                sign_in FactoryBot.create(:user)
+                subject.sign_in FactoryBot.create(:user)
                 get :index
                 assert_response :success
             end
@@ -37,6 +39,7 @@ RSpec.describe NewsController, type: :controller do
                 get :index
                 render_template 'post/index'
             end
+            # it { should render_template 'index' }
 
             it "show user's news" do
                 user = FactoryBot.create(:user)

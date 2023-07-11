@@ -1,5 +1,6 @@
 class PostController < ApplicationController
   before_action :authenticate_user!
+  rescue_from ActiveRecord::InvalidForeignKey, with: :redirect_error
 
   def index
     @post = Post.findPostsBy current_user.id
@@ -7,7 +8,7 @@ class PostController < ApplicationController
 
   def create
     Post.new(text: params[:post][:text], img: params[:post][:img], user_id: current_user.id).save
-    redirect_to '/post'
+    redirect_to :post_index
   end
 
   def show
@@ -25,7 +26,12 @@ class PostController < ApplicationController
   end
 
   def addComment
-    Comment.new(text: params[:comment][:text], post_id: params['id'], user_id: current_user.id).save
+    Comment.new(text: params[:comment][:text], post_id: params[:id], user_id: current_user.id).save
+    redirect_back fallback_location: root_path
+  end
+
+  private
+  def redirect_error
     redirect_back fallback_location: root_path
   end
 end

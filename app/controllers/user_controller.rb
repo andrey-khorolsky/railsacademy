@@ -13,11 +13,14 @@ class UserController < ApplicationController
     @user = User.find(params['id'])
     @follower = Follower.areUserFollowTo current_user.id, @user.id
     @posts = Post.findPostsBy @user.id
+    @metrics = getUsersMetrics
   end
 
   # Show current user's account
   def account
-    @post = Post.findPostsBy current_user.id
+    @posts = Post.findPostsBy current_user.id
+    @user = current_user
+    @metrics = getUsersMetrics
   end
 
   # Follow current user on author
@@ -30,5 +33,14 @@ class UserController < ApplicationController
   def unfollow
     Follower.unfollow current_user.id, params['id']
     redirect_to '/user/' + params['id']
+  end
+
+  private
+  def getUsersMetrics
+    [
+      Post.where('user_id = ?', @user.id).count,
+      Follower.where('author_id = ?', @user.id).count,
+      Follower.where('follower_id = ?', @user.id).count
+    ]
   end
 end

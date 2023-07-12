@@ -1,12 +1,35 @@
 
-<div>Users</div>
 
-<br>
+<div class="mx-auto w-1/3 h-screen overflow-visible h-full">
+    <div class="mx-auto max-w-lg first fixed w-full">
+        <div class="suggestion-users">
+            <div class="title flex w-full justify-between text-2xl md-8">
+                <div class="left">
+                    <h1 class="font-bold">All users</h1>
+                </div>
+            </div>
 
-<%@user.each do |usr|%>
-    <div>
-        <br>
-        <a href='/user/<%=usr.id%>'>Name: <%=usr.name%></a>
-        <div>Email: <%=usr.email%></div>
+            <%@user.each do |usr|%>
+
+                <div class="users-wrapper mt-8 flex w-full justify-between items-center">
+                    <div class="user-item flex flex-row pl-2">
+                        <div class="user-name flex flex-col ">
+                            <a href="/user/<%=usr.id%>" class="text-xl font-semibold"><%=usr.name%></a>
+                            <span class="text-lg -mt-1 text-gray-700"><%=usr.email%></span>
+                        </div>
+                    </div>
+
+                    <%if (usr.id != current_user.id)%>
+                        <%if Follower.areUserFollowTo current_user.id, usr.id%>
+                            <a href='/user/<%=usr.id%>/unfollow' class="follow text-blue-600 text-xl font-semibold">Unfollow</a>
+                        <%else%>
+                            <a href='/user/<%=usr.id%>/follow' class="follow text-blue-600 text-xl font-semibold">Follow</a>
+                        <%end%>
+                    <%end%>
+                </div>
+
+            <%end%>
+
+        </div>
     </div>
-<%end%>
+</div>

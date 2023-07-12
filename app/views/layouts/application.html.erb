@@ -5,28 +5,49 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
   
-    <div class='menu'>
-      <a href='/'>Main</a>
-      <a href='/user'>Users</a>
-      <a href='/account'>Account</a>
+<nav class="border-b py-3 sticky top-0 bg-white z-50">
+		<div class="container mx-auto flex justify-between">
+			<div class="logo"></div>
 
-      <a href='/users/sign_in'>Log in</a>
+			<div class="icons flex">
+				<div class="home-icon mr-6">
+					<a href='/'>Main</a>
+				</div>
 
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-    </div>
+				<div class="like-icon mr-6">
+					<a href='/user'>Users</a>
+				</div>
+        
+				<div class="profile-icon">
+          <%if user_signed_in?%>  
+            <a href='/account'>
+              <%=User.find(current_user.id).name%>
+            </a>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+          <%else%>
+            <a>
+              <%= button_to "Sign in", '/users/sign_in'%>
+            </a>
+        <%end%>
+
+				</div>
+			</div>
+		</div>
+	</nav>
     
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-      <br>
+  <%= yield %>
 
-    <%= yield %>
   </body>
 </html>

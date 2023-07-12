@@ -1,14 +1,14 @@
-<div>New post</div>
 
-<%= form_for :post, method: :post, url: '/post' do |f|%>
+<div class="mx-auto w-1/3 h-screen overflow-visible">
 
-    <%= f.label :text%><br>
-    <%= f.text_field :text, autofocus: true%>
-    <br>
+    <div class="font-bold title justify-between text-2xl my-8">New post</div>
 
-    <%= f.label :img%>
-    <%= f.file_field :img%>
-    <br>
+    <%= form_for :post, method: :post, url: '/post' do |f|%>
 
-    <%= f.submit %>
-<%end%>
+        <%= f.text_field(:text, {:class => "mt-8 w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "})%>
+
+        <%= f.file_field(:img, {:class => "mt-8 w-full block text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"})%>
+
+        <%= f.submit({:class => "mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg sm:w-auto px-5 py-2.5 text-center"})%>
+    <%end%>
+</div>

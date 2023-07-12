@@ -57,25 +57,25 @@ RSpec.describe Like, type: :model do
         expect(subject).to eq false
       end
 
-      # it { should validate_uniqueness_of(:user_id).scoped_to(:post_id)}
+      context 'uniquness like' do
+        subject { FactoryBot.create(:like) }
+        it { should validate_uniqueness_of(:post_id).scoped_to(:user_id) }
+      end
     end
 
     context "user don't exist" do
       let(:user_id) { 200 }
       it "user don't exist" do
-        expect { subject }.to raise_error
+        expect { subject }.to raise_error(ActiveRecord::InvalidForeignKey)
       end
-
-      # it {is_expected.to raise_error}
     end
 
     context "post don't exist" do
       let(:post_id) { 200 }
       let(:user_id) { 1 }
       it "post don't exist" do
-        expect { subject }.to raise_error
+        expect { subject }.to raise_error(ActiveRecord::InvalidForeignKey)
       end
-      # it { is_expected.to raise_error}
     end
   end
 

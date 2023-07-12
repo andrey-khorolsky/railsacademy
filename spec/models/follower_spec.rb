@@ -55,10 +55,10 @@ RSpec.describe Follower, type: :model do
       end
     end
 
-    # context "uniquness follow" do
-    #   subject { FactoryBot.create(:follower)}
-    #   it { should validate_uniqueness_of(:author_id).scoped_to(:follower_id)}
-    # end
+    context 'uniquness follow' do
+      subject { FactoryBot.create(:follower) }
+      it { should validate_uniqueness_of(:author_id).scoped_to(:follower_id) }
+    end
 
     context 'user follow to yourself' do
       let(:author_id) { 2 }

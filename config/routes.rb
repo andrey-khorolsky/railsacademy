@@ -9,16 +9,17 @@ Rails.application.routes.draw do
 
   resources :post
 
-  get '/account', to: 'post#index'
+  # User's account
+  get '/account', to: 'user#account'
 
   # Follow and unfollow to user
   get '/user/:id/follow', to: 'user#follow'
   get '/user/:id/unfollow', to: 'user#unfollow'
 
-  # Like post and dislike
+  # Like and dislike post
   get '/post/:id/like', to: 'post#like'
   get '/post/:id/dislike', to: 'post#dislike'
 
-  # Write new post
+  # Write new comment
   post '/post/:id/comment', to: 'post#addComment'
 end

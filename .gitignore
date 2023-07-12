@@ -36,3 +36,6 @@
 
 #Ignore uploaded imgs for posts
 /public/uploads/post
+
+# Ignore folder for coverage % (SimpleCov)
+/coverage

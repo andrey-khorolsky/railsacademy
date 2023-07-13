@@ -28,10 +28,8 @@
 				</div>
         
           <%if user_signed_in?%>
-            <div class="like-icon mr-6 m-auto"> 
-              <a href='/account'>
-                <%=User.find(current_user.id).name%>
-              </a>
+            <div class="like-icon mr-6 m-auto">
+              <%= link_to User.find(current_user.id).name, user_path(current_user) %>
             </div>
             <div class="like-icon mr-6 m-auto">
               <%= button_to "Sign out", destroy_user_session_path, {method: :delete, :class => "inline-block bg-transparent hover:bg-blue-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-600 hover:border-transparent rounded"}%>

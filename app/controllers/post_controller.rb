@@ -1,11 +1,11 @@
 class PostController < ApplicationController
   before_action :authenticate_user!
-  rescue_from ActiveRecord::InvalidForeignKey, with: :redirect_error
+  rescue_from Exception, with: :redirect_error
 
   # Create new post
   def create
     Post.new(text: params[:post][:text], img: params[:post][:img], user_id: current_user.id).save
-    redirect_to :account
+    redirect_to user_path(current_user)
   end
 
   # Show selected post
@@ -33,8 +33,8 @@ class PostController < ApplicationController
 
   private
 
-  # Redirect to /post if error
+  # Redirect to news if error
   def redirect_error
-    redirect_back fallback_location: root_path
+    redirect_to :root
   end
 end

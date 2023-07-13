@@ -1,5 +1,6 @@
 class UserController < ApplicationController
   before_action :authenticate_user!
+  rescue_from Exception, with: :redirect_error
 
   # Show all users
   def index
@@ -8,18 +9,10 @@ class UserController < ApplicationController
 
   # Show user's account
   def show
-    redirect_to '/account' if current_user.id == params[:id].to_i
-
     @user = User.find(params['id'])
-    @follower = Follower.areUserFollowTo current_user.id, @user.id
-    @posts = Post.findPostsBy @user.id
-    @metrics = getUsersMetrics
-  end
+    @follower = Follower.areUserFollowTo current_user.id, @user.id if current_user.id != params[:id].to_i
 
-  # Show current user's account
-  def account
-    @posts = Post.findPostsBy current_user.id
-    @user = current_user
+    @posts = Post.findPostsBy @user.id
     @metrics = getUsersMetrics
   end
 
@@ -43,4 +36,9 @@ class UserController < ApplicationController
       Follower.where('follower_id = ?', @user.id).count
     ]
   end
+
+    # Redirect to /user if error
+    def redirect_error
+      redirect_to :user_index
+    end
 end

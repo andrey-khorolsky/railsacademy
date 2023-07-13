@@ -5,12 +5,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: 'news#index'
 
-  resources :user
+  resources :user, only: [:index, :show]
 
-  resources :post
-
-  # User's account
-  get '/account', to: 'user#account'
+  resources :post, only: [:create, :new, :show]
 
   # Follow and unfollow to user
   get '/user/:id/follow', to: 'user#follow'

@@ -71,7 +71,7 @@
                                 <div class="caption text-sm mt-3">
                                     <%Comment.getLastComments(post.id).each do |comm|%>
                                         <div>
-                                            <a href="/user/<%=post.user_id%>"><b><%=User.find(comm.user_id).name%>:</b></a>
+                                            <a href="/user/<%=comm.user_id%>"><b><%=User.find(comm.user_id).name%>:</b></a>
                                             <%=comm.text%>
                                         </div>
                                     <%end%>
@@ -84,7 +84,7 @@
                                         <div class="wrapper flex">
                                             <%= f.text_field(:text, {:class => "text-sm h-10 w-full outline-none focus:outline-none w-10/12 mt-2"})%>
 
-                                            <%= f.submit("post", {:class => "text-blue-500 opacity-75 w-2/12 text-right font-bold"})%>
+                                            <%= f.submit("post", {:class => "text-blue-500 opacity-75 w-2/12 font-bold mx-auto"})%>
 
                                         </div>
                                     <%end%>

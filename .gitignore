@@ -39,3 +39,9 @@
 
 # Ignore folder for coverage % (SimpleCov)
 /coverage
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/ToDo
+

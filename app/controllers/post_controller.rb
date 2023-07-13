@@ -5,7 +5,7 @@ class PostController < ApplicationController
   # Create new post
   def create
     Post.new(text: params[:post][:text], img: params[:post][:img], user_id: current_user.id).save
-    redirect_to :post_index
+    redirect_to :account
   end
 
   # Show selected post

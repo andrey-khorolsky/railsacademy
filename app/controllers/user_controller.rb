@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   before_action :authenticate_user!
-  rescue_from Exception, with: :redirect_error
+  # rescue_from Exception, with: :redirect_error
 
   # Show all users
   def index

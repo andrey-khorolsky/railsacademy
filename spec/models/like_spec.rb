@@ -81,6 +81,7 @@ RSpec.describe Like, type: :model do
 
   describe '#dislike' do
     subject { Like.dislike post_id, user_id }
+    before { Like.like post_id, user_id}
 
     let(:post_id) { 3 }
     let(:user_id) { 1 }
@@ -106,14 +107,14 @@ RSpec.describe Like, type: :model do
     context "user don't exist" do
       let(:user_id) { 200 }
 
-      it { is_expected.to eq 0 }
+      it { is_expected.to raise_error }
     end
 
     context "post don't exist" do
       let(:post_id) { 200 }
       let(:user_id) { 1 }
 
-      it { is_expected.to eq 0 }
+      it { expect { Like.dislike post_id, user_id }.to raise_error }
     end
   end
 end

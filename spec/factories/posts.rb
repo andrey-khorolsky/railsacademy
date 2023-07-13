@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :post do
-    user_id { rand(1..6) }
+    user_id { rand(1..10) }
     text { Faker::Lorem.paragraph }
-    img { [nil, 'gmc.jpg', 'exm1.jpeg', 'lemedoit.jpg'][rand(0..3)] }
+    img { nil }
   end
 end

@@ -3,22 +3,24 @@ require 'rails_helper'
 RSpec.describe Follower, type: :model do
   describe '#areUserFollowTo' do
     subject { Follower.areUserFollowTo follower_id, author_id }
+    let(:author_id) {FactoryBot.create(:user).id}
+    let(:follower_id) {FactoryBot.create(:user).id}
 
     context 'user are follow to author' do
-      let(:follower_id) { 1 }
       let(:author_id) { 5 }
-      it { is_expected.to eq true }
+      it "user are follow to author" do
+        Follower.follow follower_id, author_id
+        is_expected.to eq true
+      end
     end
 
     context 'user not follow to author' do
-      let(:follower_id) { 1 }
       let(:author_id) { 200 }
 
       it { is_expected.to eq false }
     end
 
     context "author don't exist" do
-      let(:follower_id) { 1 }
       let(:author_id) { 200 }
 
       it { is_expected.to eq false }
@@ -26,7 +28,6 @@ RSpec.describe Follower, type: :model do
 
     context "user don't exist" do
       let(:follower_id) { 200 }
-      let(:author_id) { 1 }
 
       it { is_expected.to eq false }
     end

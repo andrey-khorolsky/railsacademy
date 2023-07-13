@@ -5,8 +5,8 @@
 
             <!--users data-->
             <div class="text-left pl-4 pt-3">
-                <span class="text-base text-gray-700 text-2xl mr-2"><%=@user.name%></span>
-                <span class="text-lg font-bold text-gray-700 mr-2"><%=@user.email%></span>
+                <span class="text-lg font-bold text-gray-700 mr-2"><%=@user.name%></span>
+                <span class="text-sm text-gray-700 mr-2"><%=@user.email%></span>
                 
                 <!--follow-->
                 <%if (@user.id != current_user.id)%>

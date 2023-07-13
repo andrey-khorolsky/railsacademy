@@ -33,3 +33,7 @@
         </div>
     </div>
 </div>
+
+<%if @user.count > 12%>
+    <%= render "post/scrolltop" %>
+<%end%>

@@ -26,13 +26,13 @@ class UserController < ApplicationController
   # Follow current user on author
   def follow
     Follower.follow current_user.id, params['id']
-    redirect_to '/user/' + params['id']
+    redirect_back fallback_location: root_path
   end
 
   # Unfollow current user on author
   def unfollow
     Follower.unfollow current_user.id, params['id']
-    redirect_to '/user/' + params['id']
+    redirect_back fallback_location: root_path
   end
 
   private

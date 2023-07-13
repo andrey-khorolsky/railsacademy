@@ -44,7 +44,7 @@ RSpec.describe UserController, type: :controller do
 
     it { should respond_with 200 }
     it { should render_template 'account' }
-    it { assert_equal (Post.findPostsBy user.id), assigns(:post) }
+    it { assert_equal (Post.findPostsBy user.id), assigns(:posts) }
   end
 
   describe 'GET follow' do

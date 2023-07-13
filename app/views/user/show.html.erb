@@ -1,34 +1,3 @@
-<a href='/user'>Back</a>
 
-<div>User</div>
-
-
-<div>Name: <%= @user.name%></div>
-<div>Email: <%= @user.email%></div>
-
-<%if (current_user.id != @user.id)%>
-    <%if @follower%>
-        <a href='/user/<%=@user.id%>/unfollow'>Unfollow</a>
-    <%else%>
-        <a href='/user/<%=@user.id%>/follow'>Follow</a>
-    <%end%>
-<%end%>
-
-<%@posts.each do |post|%>
-
-    <div>
-        <br>
-        <div>From: <%=User.find(post.user_id).name%></div>
-        <img src=<%=post.img%>>
-        <div><%=post.text%></div>
-        <div>Likes: <%=Like.findLikes post.id%></div>
-        
-        <%if post.hasLikeFrom current_user.id%>
-            <a href='/post/<%=post.id%>/dislike'>Dislike</a>
-        <%else%>
-            <a href='/post/<%=post.id%>/like'>Like</a>
-        <%end%>
-        
-    </div>
-
-<%end%>
+<%= render "user/userdata" %>
+<%= render "post/post" %>

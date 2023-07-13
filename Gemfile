@@ -51,6 +51,9 @@ gem 'devise', '~> 4.9'
 # CarrierWave for uploading files
 gem 'carrierwave', '~> 3.0'
 
+# Tailwind
+gem "tailwindcss-rails", "~> 2.0"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

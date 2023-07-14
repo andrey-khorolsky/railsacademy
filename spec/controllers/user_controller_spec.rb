@@ -26,7 +26,7 @@ RSpec.describe UserController, type: :controller do
 
     it { assert_equal User.find(someuser.id), assigns(:user) }
     it { assert_equal (Follower.areUserFollowTo user.id, someuser.id), assigns(:follower) }
-    it { assert_equal (Post.findPostsBy someuser.id), assigns(:posts) }
+    it { assert_equal (Post.findPostsBy(someuser.id).order(created_at: :desc)), assigns(:posts) }
     it { assert_equal ([
       Post.where('user_id = ?', user.id).count,
       Follower.where('author_id = ?', user.id).count,
@@ -43,7 +43,7 @@ RSpec.describe UserController, type: :controller do
       before { get :show, params: { id: user.id } }
       it { should respond_with 200 }
       it { should render_template 'show' }
-      it { assert_equal (Post.findPostsBy user.id), assigns(:posts) }
+      it { assert_equal (Post.findPostsBy(user.id).order(created_at: :desc)), assigns(:posts) }
       it { assert_equal ([
         Post.where('user_id = ?', user.id).count,
         Follower.where('author_id = ?', user.id).count,

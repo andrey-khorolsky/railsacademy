@@ -12,7 +12,7 @@ class UserController < ApplicationController
     @user = User.find(params['id'])
     @follower = Follower.areUserFollowTo current_user.id, @user.id if current_user.id != params[:id].to_i
 
-    @posts = Post.findPostsBy @user.id
+    @posts = Post.findPostsBy(@user.id).order(created_at: :desc)
     @metrics = getUsersMetrics
   end
 

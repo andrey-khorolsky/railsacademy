@@ -10,10 +10,14 @@
                         <div class="header border-b p-4 flex justify-between items-center">
                             <div class="left flex flex-row items-center">
                                 
-
                                 <div class="user-name-and-place flex flex-col">
                                     <a href="/user/<%=post.user_id%>" class="text-sm font-bold"><%=User.find(post.user_id).name%></a>
                                 </div>
+                            </div>
+
+                            <div class="right flex">
+                                <!--<div class="text-xs border-r-2 pr-2">edit</div>
+                                <div class="text-xs pl-2">delete</div>-->
                             </div>
                         </div>
 

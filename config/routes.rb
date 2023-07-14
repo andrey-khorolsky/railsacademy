@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :user, only: [:index, :show]
 
-  resources :post, only: [:create, :new, :show]
+  resources :post, only: [:create, :new, :show, :destroy]
 
   # Follow and unfollow to user
   get '/user/:id/follow', to: 'user#follow'

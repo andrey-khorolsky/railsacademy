@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   has_one_attached :img
   mount_uploader :img, PostimgUploader
+  validates :text, length: {minimum: 4}
 
   # Get news for user
   def self.getUsersNews(user_id)

@@ -10,7 +10,7 @@ class PostController < ApplicationController
 
   # Show selected post
   def show
-    @post = Post.find(params['id'])
+    @posts = Post.where('id = ?', params['id'])
   end
 
   # Delete the post

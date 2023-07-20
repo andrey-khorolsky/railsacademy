@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: 'news#index'
 
-  resources :user, only: [:index, :show]
+  resources :user, only: %i[index show]
 
-  resources :post, only: [:create, :new, :show, :destroy]
+  resources :post, only: %i[create new show edit update destroy]
 
   # Follow and unfollow to user
   get '/user/:id/follow', to: 'user#follow'

@@ -1,16 +1,22 @@
 <div class="feed-item border border-gray-400 rounded bg-white w-full mt-16 p-5 first-of-type:mt-0">
     <!-- top panel-->
     <div class="header border-b p-4 flex justify-between items-center">
+
+        <!--User's data - avatar and name-->
         <div class="left flex flex-row items-center">
             
+            <div class="user-img h-10 w-10 border rounded-full overflow-hidden mr-4">
+                <img alt="nike's profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=post.getAuthorsAvatar%>>
+            </div>
+
             <div class="user-name-and-place flex flex-col">
-                <a href="/user/<%=post.user_id%>" class="text-sm font-bold"><%=User.find(post.user_id).name%></a>
+                <a href="/user/<%=post.user_id%>" class="text-sm font-bold"><%=post.getAuthorsName%></a>
             </div>
         </div>
 
         <div class="right flex">
             <%= link_to "see", post_path(post), class: "text-xs pr-2"%>
-            <%if post.user_id == current_user.id%>
+            <%if user_signed_in? and post.user_id == current_user.id%>
                     <%= link_to "edit", edit_post_path(post), class: "text-xs border-r-2 border-l-2 px-2"%>
                     <%= link_to "delete", post_path(post), data: { turbo_method: :delete}, class: "text-xs pl-2"%>
             <%end%>
@@ -68,11 +74,14 @@
         <div class="bottom border-t pt-3 mt-3">
 
             <!--Comments-->
-            <div class="caption text-sm mt-3">
+            <div class="caption text-sm mb-3">
                 <%Comment.getLastComments(post.id).each do |comm|%>
-                    <div>
-                        <a href="/user/<%=comm.user_id%>"><b><%=User.find(comm.user_id).name%>:</b></a>
-                        <%=comm.text%>
+                    <div class="h-5 mt-2 m-auto">
+                        <div class="user-img h-5 w-5 border rounded-full overflow-hidden inline-block">
+                            <img alt="nike's profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=comm.getAuthorsAvatar%>>
+                        </div>
+                        <a href="/user/<%=comm.user_id%>"><b><%=comm.getAuthorsName%>:</b></a>
+                        <span><%=comm.text%></span>
                     </div>
                 <%end%>
             </div>
@@ -80,15 +89,14 @@
             <!--Write new comment-->
             <%if user_signed_in?%>
                 <%=form_for :comment, url: "/post/#{post.id}/comment", method: :post do |f|%>
-                    
                     <div class="wrapper flex">
-                        <%= f.text_field(:text, {:class => "text-sm h-10 w-full outline-none focus:outline-none w-10/12 mt-2"})%>
+                        <%= f.text_field(:text, {:class => "text-sm h-10 w-full outline-none focus:outline-none w-10/12"})%>
 
                         <%= f.submit("post", {:class => "text-blue-500 opacity-75 w-2/12 font-bold mx-auto"})%>
-
                     </div>
                 <%end%>
             <%end%>
+            
         </div>
     </div>
 </div>

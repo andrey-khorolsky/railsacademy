@@ -6,5 +6,16 @@ class User < ApplicationRecord
 
   has_one_attached :img
   mount_uploader :img, AvatarUploader
-  # attr_accessor :img
+
+  def self.getImg(id)
+    if User.find(id)[:img].blank?
+      return '/uploads/user.jpg'
+    else
+      return User.find(id).img
+    end
+  end
+
+  def self.getName
+    User.find(user_id)[:name]
+  end
 end

@@ -18,4 +18,14 @@ class Post < ApplicationRecord
   def self.findPostsBy(user_id)
     where('user_id = ?', user_id)
   end
+
+  # Find post's author name
+  def getAuthorsName
+    User.find(user_id)[:name]
+  end
+
+  # Find post's author avatar
+  def getAuthorsAvatar
+    User.find(user_id)[:img]
+  end
 end

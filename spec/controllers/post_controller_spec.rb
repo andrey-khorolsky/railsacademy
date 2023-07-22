@@ -29,9 +29,9 @@ RSpec.describe PostController, type: :controller do
     it { should render_template 'show' }
     it { assert_equal Post.find(3), assigns(:post) }
 
-    context "go to not exists page" do
-      before { get :show, params: { id: 1000} }
-      it {is_expected.to respond_with 302}
+    context 'go to not exists page' do
+      before { get :show, params: { id: 1000 } }
+      it { is_expected.to respond_with 302 }
       it { should redirect_to(controller: :news, action: :index) }
     end
   end
@@ -107,25 +107,24 @@ RSpec.describe PostController, type: :controller do
     end
   end
 
-  describe "closed urls" do
+  describe 'closed urls' do
     let(:user) { FactoryBot.create(:user) }
     before do
       subject.sign_in user
     end
 
-    it "delete post" do
+    it 'delete post' do
       # it {expect(delete :destroy, params: {id: 3}).to raise_error}
       # expect(Post.find(3).nil?).to eq false
       # expect(delete :destroy, params: {id: 3}).to raise_error(ActionController::UrlGenerationError)
       # expect(Post.find(3).nil?).to eq false
     end
 
-    it "delete user" do
+    it 'delete user' do
       # it {expect(delete :destroy, params: {id: 3}).to raise_error}
       # expect(Post.find(3).nil?).to eq false
       # expect(delete :destroy, params: {id: 3}).to raise_error(ActionController::UrlGenerationError)
       # expect(Post.find(3).nil?).to eq false
     end
-
   end
 end

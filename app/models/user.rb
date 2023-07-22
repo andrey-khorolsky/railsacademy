@@ -8,14 +8,12 @@ class User < ApplicationRecord
   mount_uploader :img, AvatarUploader
 
   def self.getImg(id)
-    if User.find(id)[:img].blank?
-      return '/uploads/user.jpg'
-    else
-      return User.find(id).img
-    end
+    return '/uploads/user.jpg' if User.find(id)[:img].blank?
+
+    User.find(id).img
   end
 
-  def self.getName
-    User.find(user_id)[:name]
+  def self.getName(id)
+    User.find(id)[:name]
   end
 end

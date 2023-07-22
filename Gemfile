@@ -52,7 +52,7 @@ gem 'devise', '~> 4.9'
 gem 'carrierwave', '~> 3.0'
 
 # Tailwind
-gem "tailwindcss-rails", "~> 2.0"
+gem 'tailwindcss-rails', '~> 2.0'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

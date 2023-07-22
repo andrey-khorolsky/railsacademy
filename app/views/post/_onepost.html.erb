@@ -6,7 +6,7 @@
         <div class="left flex flex-row items-center">
             
             <div class="user-img h-10 w-10 border rounded-full overflow-hidden mr-4">
-                <img alt="nike's profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=post.getAuthorsAvatar%>>
+                <img alt="profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=post.getAuthorsAvatar%>>
             </div>
 
             <div class="user-name-and-place flex flex-col">
@@ -78,7 +78,7 @@
                 <%Comment.getLastComments(post.id).each do |comm|%>
                     <div class="h-5 mt-2 m-auto">
                         <div class="user-img h-5 w-5 border rounded-full overflow-hidden inline-block">
-                            <img alt="nike's profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=comm.getAuthorsAvatar%>>
+                            <img alt="profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=comm.getAuthorsAvatar%>>
                         </div>
                         <a href="/user/<%=comm.user_id%>"><b><%=comm.getAuthorsName%>:</b></a>
                         <span><%=comm.text%></span>

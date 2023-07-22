@@ -8,11 +8,11 @@ class Comment < ApplicationRecord
 
   # Find comment's author name
   def getAuthorsName
-    User.find(user_id)[:name]
+    User.getName user_id
   end
 
   # Find comment's author avatar
   def getAuthorsAvatar
-    User.find(user_id)[:img]
+    User.getImg user_id
   end
 end

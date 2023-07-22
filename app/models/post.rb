@@ -21,11 +21,11 @@ class Post < ApplicationRecord
 
   # Find post's author name
   def getAuthorsName
-    User.find(user_id)[:name]
+    User.getName user_id
   end
 
   # Find post's author avatar
   def getAuthorsAvatar
-    User.find(user_id)[:img]
+    User.getImg user_id
   end
 end

@@ -6,18 +6,33 @@
   <%= render "devise/shared/error_messages", resource: resource %>
     
     <div class="field mt-8">
-      <%= f.label :img %><br />
+      <%= f.label :img, 'Avatar'%><br/>
       <%= f.file_field(:img, {:class => "w-full block text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"})%>
     </div>
 
     <div class="field mt-8">
-      <%= f.label :name %><br />
-      <%= f.text_field(:name, {autofocus: true, autocomplete: "name", :class => "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"}) %>
+      <%= f.label :name, 'Username' %><br/>
+      <%= f.text_field(:name, {autofocus: true, :class => "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"}) %>
     </div>
 
     <div class="field mt-8">
-      <%= f.label :email, {:class => "mt-8"}  %><br />
+      <%= f.label :realname, 'Name'%><br/>
+      <%= f.text_field(:realname, {autofocus: true, autocomplete: "name", :class => "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"}) %>
+    </div>
+
+    <div class="field mt-8">
+      <%= f.label :description, 'Description'%><br/>
+      <%= f.text_field(:description, {autofocus: true, :class => "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"}) %>
+    </div>
+
+    <div class="field mt-8">
+      <%= f.label :email, {:class => "mt-8"}  %><br/>
       <%= f.email_field(:email, {autofocus: true, autocomplete: "email", :class => "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "}) %>
+    </div>
+
+    <div class="field mt-8">
+      <%= f.label :closed %><br/>
+      <%= f.check_box(:closed, {:class => "bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"}) %>
     </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -25,7 +40,7 @@
   <% end %>
 
   <div class="field mt-8">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
     <%= f.password_field :password, autocomplete: "new-password", class: "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
     <% if @minimum_password_length %>
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -33,12 +48,12 @@
   </div>
 
   <div class="field mt-8">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %><br/>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
   </div>
 
   <div class="field mt-8">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
     <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
   </div>
 

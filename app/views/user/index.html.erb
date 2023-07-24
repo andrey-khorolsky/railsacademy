@@ -13,6 +13,9 @@
 
                 <div class="users-wrapper mt-8 flex w-full justify-between items-center">
                     <div class="user-item flex flex-row pl-2">
+                        <div class="user-img h-10 w-10 border rounded-full overflow-hidden mr-4">
+                            <img alt="realdonaldtrump's profile picture" class="" src=<%=User.getImg usr.id%>>
+                        </div>
                         <div class="user-name flex flex-col ">
                             <a href="/user/<%=usr.id%>" class="text-xl font-semibold"><%=usr.name%></a>
                             <span class="text-lg -mt-1 text-gray-700"><%=usr.email%></span>

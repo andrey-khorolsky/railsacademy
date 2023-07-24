@@ -1,12 +1,18 @@
 
 <div class="bg-gray-100 h-auto px-48 mb-16">
-    <div class="flex md:flex-row-reverse flex-wrap">
-        <div class="w-full md:w-3/4 p-4 text-center">
+    <div class="flex md:flex-row flex-wrap m-auto w-1/2">
+
+        <!--User's avatar-->
+        <div class="my-auto">
+            <img src="<%=User.getImg @user.id%>" class="w-40 h-40 md:w-52 md:h-52 rounded-full border-2"/>
+        </div>
+
+        <div class="p-4 text-center">
 
             <!--users data-->
             <div class="text-left pl-4 pt-3">
-                <span class="text-lg font-bold text-gray-700 mr-2"><%=@user.name%></span>
-                <span class="text-sm text-gray-700 mr-2"><%=@user.email%></span>
+
+                <span class="text-2xl text-gray-700 mr-2"><%=@user.name%></span>
                 
                 <!--follow-->
                 <%if (@user.id != current_user.id)%>
@@ -15,8 +21,22 @@
                     <%else%>
                         <a href='/user/<%=@user.id%>/follow' class="bg-transparent hover:bg-blue-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-600 hover:border-transparent rounded">Follow</a>
                     <%end%>
+                <%else%>
+                    <%= link_to edit_user_registration_path do%>
+                        <svg class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    <%end%>
                 <%end%>
             </div>
+
+            <!--real name-->
+            <%if @user.realname?%>
+                <div class="text-left pl-4 pt-1">
+                    <span class="text-base font-bold text-gray-700 mr-2"><%=@user.realname%></span>
+                </div>
+            <%end%>
 
             <!--metrics-->
             <div class="text-left pl-4 pt-3">
@@ -30,6 +50,13 @@
                     <b><%=@metrics[2]%></b> following
                 </span>
             </div>
+
+            <!--description-->
+            <%if @user.description?%>
+                <div class="text-left pl-4 pt-3">
+                    <p class="text-base font-medium text-gray-700 mr-2"><%=@user.description%></p>
+                </div>
+            <%end%>
 
             <!--new post-->
             <%if @user.id == current_user.id%>

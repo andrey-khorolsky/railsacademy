@@ -1,6 +1,6 @@
 class PostController < ApplicationController
   before_action :authenticate_user!
-  rescue_from Exception, with: :redirect_error
+  # rescue_from Exception, with: :redirect_error
 
   # Create new post
   def create
@@ -10,7 +10,28 @@ class PostController < ApplicationController
 
   # Show selected post
   def show
-    @post = Post.find(params['id'])
+    @posts = Post.where('id = ?', params['id'])
+  end
+
+  # Delete the post
+  def destroy
+    Like.delete_by(post_id: params[:id])
+    Comment.delete_by(post_id: params[:id])
+    Post.delete(params[:id])
+  end
+
+  # Find post for edit and render page
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  # Update post (method patch)
+  def update
+    @post = Post.find(params[:id])
+    @post.text = params[:post][:text] if params[:post][:text] != nil
+    @post.img = params[:post][:img] if params[:post][:img] != nil
+    @post.save
+    redirect_to post_path(@post)
   end
 
   # Like post by current user
@@ -35,6 +56,6 @@ class PostController < ApplicationController
 
   # Redirect to news if error
   def redirect_error
-    redirect_to :root
+    redirect_back fallback_location: root_path
   end
 end

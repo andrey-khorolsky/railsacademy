@@ -29,6 +29,7 @@ class UserController < ApplicationController
   end
 
   private
+
   def getUsersMetrics
     [
       Post.where('user_id = ?', @user.id).count,
@@ -37,8 +38,8 @@ class UserController < ApplicationController
     ]
   end
 
-    # Redirect to /user if error
-    def redirect_error
-      redirect_to :user_index
-    end
+  # Redirect to /user if error
+  def redirect_error
+    redirect_to :user_index
+  end
 end

@@ -19,6 +19,7 @@ class UserController < ApplicationController
   # Follow current user on author
   def follow
     Follower.follow current_user.id, params['id']
+    FollowMailer.startFollowToUser(current_user, User.find(params[:id])).deliver_now
     redirect_back fallback_location: root_path
   end
 

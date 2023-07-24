@@ -3,8 +3,8 @@
     <div class="flex md:flex-row flex-wrap m-auto w-1/2">
 
         <!--User's avatar-->
-        <div>
-            <img src="<%=User.getImg @user.id%>" class="w-20 h-20 md:w-40 md:h-40 rounded-full border-2 p-1"/>
+        <div class="my-auto">
+            <img src="<%=User.getImg @user.id%>" class="w-40 h-40 md:w-52 md:h-52 rounded-full border-2"/>
         </div>
 
         <div class="p-4 text-center">
@@ -12,8 +12,7 @@
             <!--users data-->
             <div class="text-left pl-4 pt-3">
 
-                <span class="text-lg font-bold text-gray-700 mr-2"><%=@user.name%></span>
-                <span class="text-sm text-gray-700 mr-2"><%=@user.email%></span>
+                <span class="text-2xl text-gray-700 mr-2"><%=@user.name%></span>
                 
                 <!--follow-->
                 <%if (@user.id != current_user.id)%>
@@ -32,6 +31,13 @@
                 <%end%>
             </div>
 
+            <!--real name-->
+            <%if @user.realname?%>
+                <div class="text-left pl-4 pt-1">
+                    <span class="text-base font-bold text-gray-700 mr-2"><%=@user.realname%></span>
+                </div>
+            <%end%>
+
             <!--metrics-->
             <div class="text-left pl-4 pt-3">
                 <span class="text-base font-semibold text-gray-700 mr-2">
@@ -44,6 +50,13 @@
                     <b><%=@metrics[2]%></b> following
                 </span>
             </div>
+
+            <!--description-->
+            <%if @user.description?%>
+                <div class="text-left pl-4 pt-3">
+                    <p class="text-base font-medium text-gray-700 mr-2"><%=@user.description%></p>
+                </div>
+            <%end%>
 
             <!--new post-->
             <%if @user.id == current_user.id%>

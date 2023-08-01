@@ -1,8 +1,8 @@
 class FollowMailer < ApplicationMailer
-
-    # When current user start follow to another user - send to current user
-    def startFollowToUser(current_user, user)
-        @user = user
-        mail(to: current_user.email, subject: 'You are follow to ' + @user.name)
-    end
+  # When user have a new follower
+  def newFollower(current_user, user)
+    @follower = current_user
+    @author = user
+    mail(to: user.email, subject: 'You have a new follower')
+  end
 end

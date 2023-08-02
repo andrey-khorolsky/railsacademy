@@ -7,4 +7,11 @@ class NewsController < ApplicationController
                Post.all.order(created_at: :desc)
              end
   end
+
+  # Get user's notifications
+  def notifications
+    if user_signed_in?
+      @notifications = Notice.joins(:notice_types)
+    end
+  end
 end

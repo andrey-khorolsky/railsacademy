@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_22_103915) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_02_111024) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,6 +61,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_103915) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notice_types", force: :cascade do |t|
+    t.string "typename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "notice_types_id"
+    t.integer "users_id"
+    t.integer "posts_id"
+    t.integer "comments_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.text "text"
@@ -94,5 +110,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_103915) do
   add_foreign_key "followers", "users", column: "follower_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "notices", "comments", column: "comments_id"
+  add_foreign_key "notices", "notice_types", column: "notice_types_id"
+  add_foreign_key "notices", "posts", column: "posts_id"
+  add_foreign_key "notices", "users", column: "author_id"
+  add_foreign_key "notices", "users", column: "users_id"
   add_foreign_key "posts", "users"
 end

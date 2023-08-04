@@ -69,9 +69,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_111024) do
 
   create_table "notices", force: :cascade do |t|
     t.integer "author_id"
+    t.integer "notice_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "notice_types_id"
     t.integer "users_id"
     t.integer "posts_id"
     t.integer "comments_id"
@@ -111,7 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_111024) do
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "notices", "comments", column: "comments_id"
-  add_foreign_key "notices", "notice_types", column: "notice_types_id"
+  add_foreign_key "notices", "notice_types"
   add_foreign_key "notices", "posts", column: "posts_id"
   add_foreign_key "notices", "users", column: "author_id"
   add_foreign_key "notices", "users", column: "users_id"

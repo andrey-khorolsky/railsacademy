@@ -27,16 +27,16 @@
 # end
 
 NoticeType.create([
-    {
-        typename: "subscribe"
-    },
-    {
-        typename: "like"
-    },
-    {
-        typename: "comment"
-    },
-    {
-        typename: "post"
-    }
-])
+                    {
+                      typename: 'subscribe'
+                    },
+                    {
+                      typename: 'like'
+                    },
+                    {
+                      typename: 'comment'
+                    },
+                    {
+                      typename: 'newpost'
+                    }
+                  ])

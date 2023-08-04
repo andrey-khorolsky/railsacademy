@@ -3,7 +3,7 @@
         <div class="flex flex-col space-y-4">
 
             <% @notifications.each do |notice|%>
-                <%= render partial: "news/notifications/"+notice.typename, locals: {notice: notice} %>
+                <%= render partial: "news/notifications/"+notice.notice_type.typename, locals: {notice: notice} %>
             <%end%>
 
         </div>

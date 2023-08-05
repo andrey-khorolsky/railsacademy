@@ -36,11 +36,11 @@ class Notice < ApplicationRecord
     when 0..60
       'less than a minute'
     when 61..3600
-      (time/60).round.to_s+' minutes'
-    when 3601..86400
-      (time/3600).round.to_s+' hours'
-    when 86401..700000
-      (time/86400).round.to_s+' days'
+      (time / 60).round.to_s + ' minutes'
+    when 3601..86_400
+      (time / 3600).round.to_s + ' hours'
+    when 86_401..700_000
+      (time / 86_400).round.to_s + ' days'
     end
   end
 end

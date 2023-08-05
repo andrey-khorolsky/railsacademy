@@ -1,4 +1,6 @@
 class NewsController < ApplicationController
+  before_action :authenticate_user!, only: [:notifications]
+  
   # Get user's news or all posts
   def index
     @posts = if user_signed_in?
@@ -10,8 +12,8 @@ class NewsController < ApplicationController
 
   # Get user's notifications
   def notifications
-    if user_signed_in?
-      @notifications = Notice.where(author_id: current_user.id)
-    end
+    return unless user_signed_in?
+
+    @notifications = Notice.where(author_id: current_user.id)
   end
 end

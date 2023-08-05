@@ -1,12 +1,1 @@
-<div class="flex justify-between py-6 px-4 bg-slate-200 rounded-lg">
-    <div class="flex items-center space-x-4">
-        <img src=<%= User.getImg notice.users_id%> class="rounded-full h-14 w-14" alt="">
-        <div class="flex flex-col space-y-1">
-            <a class="font-bold" href="/user/<%= notice.users_id%>"><%= User.find(notice.users_id).name %></a>
-            <span class="text-sm"><b><%= User.find(notice.users_id).name %> start follow to you</b></span>
-        </div>
-    </div>
-    <div class="flex-none px-4 py-2 text-stone-600 text-xs md:text-sm">
-        40m ago
-    </div>
-</div>
+<span class="text-sm">subscribed to you</span>

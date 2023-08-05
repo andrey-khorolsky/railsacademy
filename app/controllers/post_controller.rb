@@ -50,8 +50,9 @@ class PostController < ApplicationController
 
   # Create comment to post by current user
   def addComment
-    Comment.new(text: params[:comment][:text], post_id: params[:id], user_id: current_user.id).save
-    Notice.comment(current_user.id, params[:id])
+    @comm = Comment.new(text: params[:comment][:text], post_id: params[:id], user_id: current_user.id)
+    @comm.save
+    Notice.comment(current_user.id, params[:id], @comm.id)
     redirect_back fallback_location: root_path
   end
 

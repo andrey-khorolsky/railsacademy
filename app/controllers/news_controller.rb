@@ -11,7 +11,7 @@ class NewsController < ApplicationController
   # Get user's notifications
   def notifications
     if user_signed_in?
-      @notifications = Notice.joins(:notice_types)
+      @notifications = Notice.where(author_id: current_user.id)
     end
   end
 end

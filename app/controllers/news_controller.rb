@@ -15,6 +15,6 @@ class NewsController < ApplicationController
     return unless user_signed_in?
 
     @notifications = Notice.where(author_id: current_user.id)
-    DeleteOldNoticeJob.perform_later
+    DeleteOldNoticeJob.set(wait_until: Date.tomorrow.noon).perform_later
   end
 end

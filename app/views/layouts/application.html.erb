@@ -26,6 +26,12 @@
 				<div class="like-icon mr-6 m-auto">
 					<a href='/user'>Users</a>
 				</div>
+
+        <%if user_signed_in?%>
+          <div class="like-icon mr-6 m-auto">
+            <a href='/notifications'>Notice</a>
+          </div>
+        <%end%>
         
           <%if user_signed_in?%>
             <div class="like-icon mr-6 m-auto">

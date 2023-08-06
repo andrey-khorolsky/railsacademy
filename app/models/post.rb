@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
   has_one_attached :img
   mount_uploader :img, PostimgUploader
-  validates :text, length: {minimum: 4}
   validates :img, presence: true
 
   # Get news for user
@@ -18,5 +17,15 @@ class Post < ApplicationRecord
   # Find user's post
   def self.findPostsBy(user_id)
     where('user_id = ?', user_id)
+  end
+
+  # Find post's author name
+  def getAuthorsName
+    User.getName user_id
+  end
+
+  # Find post's author avatar
+  def getAuthorsAvatar
+    User.getImg user_id
   end
 end

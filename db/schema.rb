@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_145839) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_02_111024) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,9 +34,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_145839) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "followers", force: :cascade do |t|
@@ -46,11 +54,35 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_145839) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notice_types", force: :cascade do |t|
+    t.string "typename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "notice_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "users_id"
+    t.integer "posts_id"
+    t.integer "comments_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "img"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,13 +94,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_145839) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "img", default: "/uploads/user.jpg"
+    t.boolean "closed", default: false
+    t.string "description"
+    t.string "realname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "followers", "users", column: "author_id"
   add_foreign_key "followers", "users", column: "follower_id"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
+  add_foreign_key "notices", "comments", column: "comments_id"
+  add_foreign_key "notices", "notice_types"
+  add_foreign_key "notices", "posts", column: "posts_id"
+  add_foreign_key "notices", "users", column: "author_id"
+  add_foreign_key "notices", "users", column: "users_id"
   add_foreign_key "posts", "users"
 end

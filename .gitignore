@@ -33,3 +33,15 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#Ignore uploaded imgs for posts
+/public/uploads/post
+
+# Ignore folder for coverage % (SimpleCov)
+/coverage
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/ToDo
+

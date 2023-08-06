@@ -1,0 +1,9 @@
+<div class="mx-auto w-1/3 h-screen overflow-visible">
+
+    <div class="font-bold title justify-between text-2xl my-8">Edit post</div>
+
+    <%= form_for :post, method: :patch, url: post_path(@post) do |f|%>
+        <%= render partial: "post/form", locals: {f: f} %>
+    <%end%>
+    
+</div>

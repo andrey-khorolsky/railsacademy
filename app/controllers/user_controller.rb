@@ -1,30 +1,48 @@
 class UserController < ApplicationController
   before_action :authenticate_user!
+  rescue_from Exception, with: :redirect_error
 
+  # Show all users
   def index
     @user = User.all
   end
 
-  def create
-    @user = User.new(params.required(:user).permit(:name, :email, :password))
-    @user.save
-
-    redirect_to '/user'
-  end
-
+  # Show user's account
   def show
     @user = User.find(params['id'])
-    @follower = Follower.where(['author_id = ? and follower_id = ?', @user.id, current_user.id]).count == 1
+    @follower = Follower.areUserFollowTo current_user.id, @user.id if current_user.id != params[:id].to_i
+
+    @posts = Post.findPostsBy(@user.id).order(created_at: :desc)
+    @metrics = getUsersMetrics
   end
 
+  # Follow current user on author
   def follow
-    Follower.new(author_id: params['id'], follower_id: current_user.id).save
-
-    redirect_to '/user/' + params['id']
+    Follower.follow current_user.id, params['id']
+    FollowMailer.newFollower(current_user, User.find(params[:id])).deliver_now
+    Notice.follow(current_user.id, params[:id])
+    redirect_back fallback_location: root_path
   end
 
+  # Unfollow current user on author
   def unfollow
-    Follower.delete_by(author_id: params['id'], follower_id: current_user.id)
-    redirect_to '/user/' + params['id']
+    Follower.unfollow current_user.id, params['id']
+    Notice.unfollow(current_user.id, params[:id])
+    redirect_back fallback_location: root_path
+  end
+
+  private
+
+  def getUsersMetrics
+    [
+      Post.where('user_id = ?', @user.id).count,
+      Follower.where('author_id = ?', @user.id).count,
+      Follower.where('follower_id = ?', @user.id).count
+    ]
+  end
+
+  # Redirect to /user if error
+  def redirect_error
+    redirect_to :user_index
   end
 end

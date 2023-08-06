@@ -1,0 +1,7 @@
+<span class="text-sm max-w-sm">
+    left a new comment on your
+    <b>
+        <a href="/post/<%=notice.posts_id%>">post</a>
+    </b>: "<%= Comment.find(notice.comments_id).text%>"
+</span>
+

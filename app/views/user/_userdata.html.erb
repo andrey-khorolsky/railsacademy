@@ -44,10 +44,10 @@
                     <b><%=@metrics[0]%></b> posts
                 </span>
                 <span class="text-base font-semibold text-gray-700 mr-2">
-                    <b><%=@metrics[1]%></b> followers
+                    <b><%=@metrics[1]%></b> <%= link_to "followers", user_followers_path(@user.id) %>
                 </span>
                 <span class="text-base font-semibold text-gray-700">
-                    <b><%=@metrics[2]%></b> following
+                    <b><%=@metrics[2]%></b> <%= link_to "following", user_following_path(@user.id) %>
                 </span>
             </div>
 

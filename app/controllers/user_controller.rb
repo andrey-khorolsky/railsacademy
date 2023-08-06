@@ -5,6 +5,7 @@ class UserController < ApplicationController
   # Show all users
   def index
     @user = User.all
+    @title = 'All users'
   end
 
   # Show user's account
@@ -29,6 +30,20 @@ class UserController < ApplicationController
     Follower.unfollow current_user.id, params['id']
     Notice.unfollow(current_user.id, params[:id])
     redirect_back fallback_location: root_path
+  end
+
+  # Show all followers
+  def followers
+    @user = User.where(id: Follower.select(:follower_id).where(author_id: params[:user_id]))
+    @title = User.find(params[:user_id]).name + ' followers'
+    render 'index'
+  end
+
+  # Show all following users
+  def following
+    @user = User.where(id: Follower.select(:author_id).where(follower_id: params[:user_id]))
+    @title = User.find(params[:user_id]).name + ' following to'
+    render 'index'
   end
 
   private

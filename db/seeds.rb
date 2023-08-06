@@ -35,8 +35,5 @@ NoticeType.create([
                     },
                     {
                       typename: 'comment'
-                    },
-                    {
-                      typename: 'newpost'
                     }
                   ])

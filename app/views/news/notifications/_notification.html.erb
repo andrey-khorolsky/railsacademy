@@ -11,13 +11,13 @@
 
                 <!--user's img-->
                 <a href="/user/<%=notice.users_id%>">
-                    <img src=<%= User.getImg notice.users_id%> class="rounded-full h-8 w-8 max-w-min mt-8 -ml-4" alt="">
+                    <img src=<%= User.getImg notice.users_id%> class="rounded-full bg-white h-8 w-8 max-w-min mt-8 -ml-4" alt="">
                 </a>
                 
         <!--only user's img-->
             <%else%>
                 <a href="/user/<%=notice.users_id%>">
-                    <img src=<%= User.getImg notice.users_id%> class="rounded-full h-14 w-14" alt="">
+                    <img src=<%= User.getImg notice.users_id%> class="rounded-full bg-white h-14 w-14" alt="">
                 </a>
             <%end%>
         </div>

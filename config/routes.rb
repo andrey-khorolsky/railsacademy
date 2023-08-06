@@ -22,4 +22,7 @@ Rails.application.routes.draw do
 
   # Write new comment
   post '/post/:id/comment', to: 'post#addComment'
+
+  # Notifications
+  get '/notifications', to: 'news#notifications'
 end

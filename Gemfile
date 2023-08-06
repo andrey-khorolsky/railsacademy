@@ -75,6 +75,10 @@ group :development, :test do
   gem 'rails-controller-testing'
 
   gem 'faker'
+
+  gem 'solargraph'
+
+  gem 'solargraph-rails'
 end
 
 group :development do
@@ -82,7 +86,7 @@ group :development do
   gem 'web-console'
 
   # For open email letter in browser
-  gem "letter_opener"
+  gem 'letter_opener'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

@@ -19,12 +19,15 @@ class UserController < ApplicationController
   # Follow current user on author
   def follow
     Follower.follow current_user.id, params['id']
+    FollowMailer.newFollower(current_user, User.find(params[:id])).deliver_now
+    Notice.follow(current_user.id, params[:id])
     redirect_back fallback_location: root_path
   end
 
   # Unfollow current user on author
   def unfollow
     Follower.unfollow current_user.id, params['id']
+    Notice.unfollow(current_user.id, params[:id])
     redirect_back fallback_location: root_path
   end
 

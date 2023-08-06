@@ -25,3 +25,15 @@
 # Like.like rand(1..26), rand(5..16)
 # Comment.new(post_id: rand(1..26), user_id: rand(5..16), text: Faker::Lorem.sentence).save
 # end
+
+NoticeType.create([
+                    {
+                      typename: 'subscribe'
+                    },
+                    {
+                      typename: 'like'
+                    },
+                    {
+                      typename: 'comment'
+                    }
+                  ])

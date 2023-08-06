@@ -37,18 +37,22 @@ class PostController < ApplicationController
   # Like post by current user
   def like
     Like.like params['id'], current_user.id
+    Notice.like(current_user.id, params[:id])
     redirect_back fallback_location: root_path
   end
 
   # Dislike post by current user
   def dislike
     Like.dislike params['id'], current_user.id
+    Notice.dislike(current_user.id, params[:id])
     redirect_back fallback_location: root_path
   end
 
   # Create comment to post by current user
   def addComment
-    Comment.new(text: params[:comment][:text], post_id: params[:id], user_id: current_user.id).save
+    @comm = Comment.new(text: params[:comment][:text], post_id: params[:id], user_id: current_user.id)
+    @comm.save
+    Notice.comment(current_user.id, params[:id], @comm.id)
     redirect_back fallback_location: root_path
   end
 

@@ -14,12 +14,23 @@
             </div>
         </div>
 
-        <div class="right flex">
-            <%= link_to "see", post_path(post), class: "text-xs pr-2"%>
-            <%if user_signed_in? and post.user_id == current_user.id%>
-                    <%= link_to "edit", edit_post_path(post), class: "text-xs border-r-2 border-l-2 px-2"%>
-                    <%= link_to "delete", post_path(post), data: { turbo_method: :delete}, class: "text-xs pl-2"%>
-            <%end%>
+        <div class="right group inline-block">
+            <div class="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
+                <span>
+                <svg aria-label="More options" class="_8-yf5 " fill="#262626" height="16" viewBox="0 0 48 48" width="16">
+                    <circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle>
+                    <circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle>
+                    <circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle>
+                </svg>
+                </span>
+            </div>
+            <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
+                <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><%= link_to "see", post_path(post), class: "text-xs"%></li>
+                <%if user_signed_in? and post.user_id == current_user.id%>
+                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><%= link_to "edit", edit_post_path(post), class: "text-xs"%></li>
+                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><%= link_to "delete", post_path(post), data: { turbo_method: :delete}, class: "text-xs"%></li>
+                <%end%>
+            </ul>
         </div>
     </div>
 

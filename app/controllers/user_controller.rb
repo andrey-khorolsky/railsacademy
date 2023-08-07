@@ -50,8 +50,8 @@ class UserController < ApplicationController
   end
 
   private
-  
-# Get user's metrics - posts count, followers count and following count
+
+  # Get user's metrics - posts count, followers count and following count
   def getUsersMetrics
     [
       Post.where('user_id = ?', @user.id).count,
@@ -64,7 +64,7 @@ class UserController < ApplicationController
   def find_user
     return unless params[:search]
 
-    @user = @user.where('name like :param1 or realname like :param1', {param1: "%#{params[:search]}%"})
+    @user = @user.where('name like :param1 or realname like :param1', { param1: "%#{params[:search]}%" })
   end
 
   # Redirect to /user if error

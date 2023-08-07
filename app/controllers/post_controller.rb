@@ -29,8 +29,8 @@ class PostController < ApplicationController
   # Update post (method patch)
   def update
     @post = Post.find(params[:id])
-    @post.text = params[:post][:text] if params[:post][:text] != nil
-    @post.img = params[:post][:img] if params[:post][:img] != nil
+    @post.text = params[:post][:text] unless params[:post][:text].nil?
+    @post.img = params[:post][:img] unless params[:post][:img].nil?
     @post.save
     redirect_to post_path(@post)
   end

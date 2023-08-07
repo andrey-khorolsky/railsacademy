@@ -63,7 +63,7 @@ class UserController < ApplicationController
   def find_user
     return unless params[:search]
 
-    @user = @user.where('name like :param1 or realname like :param1 or email like :param1', {param1: "%#{params[:search]}%"})
+    @user = @user.where('name like :param1 or realname like :param1', {param1: "%#{params[:search]}%"})
   end
 
   # Redirect to /user if error

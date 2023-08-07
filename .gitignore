@@ -35,7 +35,7 @@
 /config/master.key
 
 #Ignore uploaded imgs for posts
-/public/uploads/post
+/public/uploads/*
 
 # Ignore folder for coverage % (SimpleCov)
 /coverage

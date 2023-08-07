@@ -15,6 +15,7 @@ class PostController < ApplicationController
 
   # Delete the post
   def destroy
+    Notice.delete_by(posts_id: params[:id])
     Like.delete_by(post_id: params[:id])
     Comment.delete_by(post_id: params[:id])
     Post.delete(params[:id])

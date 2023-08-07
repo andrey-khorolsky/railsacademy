@@ -14,7 +14,9 @@
             </div>
         </div>
 
+        <!--post's menu (3 dots)-->
         <div class="right group inline-block">
+            <!--button-->
             <div class="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
                 <span>
                 <svg aria-label="More options" class="_8-yf5 " fill="#262626" height="16" viewBox="0 0 48 48" width="16">
@@ -24,6 +26,7 @@
                 </svg>
                 </span>
             </div>
+            <!--options-->
             <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
                 <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><%= link_to "see", post_path(post), class: "text-xs"%></li>
                 <%if user_signed_in? and post.user_id == current_user.id%>
@@ -91,8 +94,10 @@
                         <div class="user-img h-5 w-5 border rounded-full overflow-hidden inline-block">
                             <img alt="profile picture" class="_6q-tv" data-testid="user-avatar" draggable="false" src=<%=comm.getAuthorsAvatar%>>
                         </div>
-                        <a href="/user/<%=comm.user_id%>"><b><%=comm.getAuthorsName%>:</b></a>
-                        <span><%=comm.text%></span>
+                        <div class="overflow-hidden inline-block">
+                            <a href="/user/<%=comm.user_id%>"><b><%=comm.getAuthorsName%>:</b></a>
+                            <span><%=comm.text%></span>
+                        </div>
                     </div>
                 <%end%>
             </div>

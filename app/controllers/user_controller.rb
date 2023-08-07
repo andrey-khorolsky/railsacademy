@@ -50,7 +50,8 @@ class UserController < ApplicationController
   end
 
   private
-
+  
+# Get user's metrics - posts count, followers count and following count
   def getUsersMetrics
     [
       Post.where('user_id = ?', @user.id).count,

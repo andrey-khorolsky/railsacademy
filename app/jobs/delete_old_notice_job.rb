@@ -2,6 +2,7 @@ class DeleteOldNoticeJob < ApplicationJob
   queue_as :default
   @@task = false
   
+  # Enqueue if job not in queue
   around_enqueue do |job, block|
     unless @@task
       block.call

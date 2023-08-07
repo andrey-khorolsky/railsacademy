@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one_attached :img
   mount_uploader :img, AvatarUploader
 
+  # Get user's avatar (custom img or stock)
   def self.getImg(id)
     return '/uploads/user.jpg' if User.find(id)[:img] == '/uploads/user.jpg'
 

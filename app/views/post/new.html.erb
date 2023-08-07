@@ -1,14 +1,9 @@
-<div>New post</div>
+<div class="mx-auto w-1/3 h-screen overflow-visible">
 
-<%= form_for :post, method: :post, url: '/post' do |f|%>
+    <div class="font-bold title justify-between text-2xl my-8">New post</div>
 
-    <%= f.label :text%><br>
-    <%= f.text_field :text, autofocus: true%>
-    <br>
+    <%= form_for :post, method: :post, url: '/post' do |f|%>
+        <%= render partial: "post/form", locals: {f: f} %>
+    <%end%>
 
-    <%= f.label :img%>
-    <%= f.file_field :img%>
-    <br>
-
-    <%= f.submit %>
-<%end%>
+</div>

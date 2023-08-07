@@ -4,7 +4,7 @@
 
         <!--User's avatar-->
         <div class="my-auto">
-            <img src="<%=User.getImg @user.id%>" class="w-40 h-40 md:w-52 md:h-52 rounded-full border-2"/>
+            <img src="<%=User.getImg @user.id%>" class="w-40 h-40 md:w-52 md:h-52 rounded-full bg-white border-2"/>
         </div>
 
         <div class="p-4 text-center">
@@ -44,10 +44,10 @@
                     <b><%=@metrics[0]%></b> posts
                 </span>
                 <span class="text-base font-semibold text-gray-700 mr-2">
-                    <b><%=@metrics[1]%></b> followers
+                    <b><%=@metrics[1]%></b> <%= link_to "followers", user_followers_path(@user.id) %>
                 </span>
                 <span class="text-base font-semibold text-gray-700">
-                    <b><%=@metrics[2]%></b> following
+                    <b><%=@metrics[2]%></b> <%= link_to "following", user_following_path(@user.id) %>
                 </span>
             </div>
 

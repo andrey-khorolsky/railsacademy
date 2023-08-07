@@ -5,6 +5,8 @@ class UserController < ApplicationController
   # Show all users
   def index
     @user = User.all
+    find_user
+    @title = 'All users'
   end
 
   # Show user's account
@@ -31,6 +33,22 @@ class UserController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  # Show all followers
+  def followers
+    @user = User.where(id: Follower.select(:follower_id).where(author_id: params[:user_id]))
+    find_user
+    @title = User.find(params[:user_id]).name + ' followers'
+    render 'index'
+  end
+
+  # Show all following users
+  def following
+    @user = User.where(id: Follower.select(:author_id).where(follower_id: params[:user_id]))
+    find_user
+    @title = User.find(params[:user_id]).name + ' following to'
+    render 'index'
+  end
+
   private
 
   def getUsersMetrics
@@ -39,6 +57,13 @@ class UserController < ApplicationController
       Follower.where('author_id = ?', @user.id).count,
       Follower.where('follower_id = ?', @user.id).count
     ]
+  end
+
+  # Find users by search if it needed
+  def find_user
+    return unless params[:search]
+
+    @user = @user.where('name like :param1 or realname like :param1', {param1: "%#{params[:search]}%"})
   end
 
   # Redirect to /user if error

@@ -4,8 +4,7 @@ RSpec.describe Post, type: :model do
   describe '#getUsersNews' do
     subject { Post.getUsersNews user_id }
     let(:res) do
-      Post.where('user_id IN (?)',
-                 Follower.select(:author_id).where('follower_id = ?', user_id)).order(created_at: :desc)
+      Post.where('user_id IN (?)', Follower.select(:author_id).where('follower_id = ?', user_id)).order(created_at: :desc)
     end
 
     context 'user with news' do

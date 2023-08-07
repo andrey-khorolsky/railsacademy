@@ -1,6 +1,6 @@
 class PostController < ApplicationController
   before_action :authenticate_user!
-  # rescue_from Exception, with: :redirect_error
+  rescue_from Exception, with: :redirect_error
 
   # Create new post
   def create
@@ -11,6 +11,9 @@ class PostController < ApplicationController
   # Show selected post
   def show
     @posts = Post.where('id = ?', params['id'])
+    if @posts.blank?
+      redirect_to rooth_path
+    end
   end
 
   # Delete the post

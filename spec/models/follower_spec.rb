@@ -5,9 +5,12 @@ RSpec.describe Follower, type: :model do
     subject { Follower.areUserFollowTo follower_id, author_id }
 
     context 'user are follow to author' do
-      let(:follower_id) { 1 }
-      let(:author_id) { 5 }
-      it { is_expected.to eq true }
+      let(:follower_id) { FactoryBot.create(:user).id }
+      let(:author_id) { FactoryBot.create(:user).id }
+      it do
+        Follower.follow(follower_id, author_id)
+        is_expected.to eq true
+      end
     end
 
     context 'user not follow to author' do

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :follower do
-    author_id { 1 }
-    follower_id { rand(2..4) }
+    author_id { (User.order("RANDOM()").limit(1))[0].id }
+    follower_id { (User.order("RANDOM()").limit(1))[0].id }
   end
 end
